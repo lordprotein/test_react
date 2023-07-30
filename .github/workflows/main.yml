@@ -2,4 +2,16 @@ name: ci/cd
 on:
   pull_request:
     types: [opened, reopened, edited]
-  
+  push:
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: install yarn
+        run: npm install yarn
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run tests
+        run: yarn test
